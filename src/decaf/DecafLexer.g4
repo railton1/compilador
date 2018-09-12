@@ -9,28 +9,40 @@ options
   language=Java;
 }
 
-tokens
-{
-  TK_class
-}
+
+TK_class : 'class Program';
+
 
 LCURLY : '{';
 RCURLY : '}';
 
 
-ID  :(ALF|'_')(ALF|NUM|'_')*;
 
-WS_ : (' ' | '\n' ) -> skip;
+RESERVADA : ('boolean'|'break'|'callout'|'class'|'continue'|'else'|'for'|'int'|'return'|'void'|'if');
+
+BOOLEANLITERAL : ('true'|'false');
+
+ID : (ALF|'_')~'.'(ALF|NUM|'_')*~'.';
+
+WS_ : ((' ')+|'\n'|'\t') -> skip;
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-CHAR : '\'' (ASCII) '\'';
+CHAR : '\'' (ALF|NUM|ESC|EPC) '\'';
 
-STRING : '"' (ASCII2)* '"';
+STRING: '"'(ALF|NUM|EPS)*'"';
+
+INTLITERAL : (NUM(NUM)*|'0x'(NUM|HEX)+);
+
+OP : ('+'|'-'|'*'|'<'|'<='|'!='|'&&'|'>'|'>='|'='|'!'|'||'|'=='|'%');
+
+TIPO: int | boolean;
 
 fragment
-ESC :  '\\' ('n'|'"');
+BOL : ('true'|'false');
+ESC :  '\\' ('n'|'t'|'\\'|'"');
 ALF : ('a'..'z' | 'A'..'Z');
 NUM : ('0'..'9');
-ASCII: ( ' '| '!' | '#'..'&' | '('..'/' | ':'..'@' | '[' | ']'..'`' | '{'..'~'|'a'..'z' | 'A'..'Z' | '0'..'9' | '\\n' | '\\t' | '\\'('\\') | '\\" | ');
-ASCII2: ( ' '| '!' | '#'..'&' | '('..'/' | ':'..'@' | '[' | ']'..'`' | '{'..'~'|'a'..'z' | 'A'..'Z' | '0'..'9' | '\\t' | '\\'('\\') | '\\" | '\\\'');
+HEX : ('a'..'f'|'A'..'F');
+EPC : (' '..'!'|'#'..'&'|'('..'/'|':'..'@'|'['|']'|'^'..'`'|'{'..'~');
+EPS : (' '..'!'|'#'..'&'|'('..'/'|':'..'@'|'['|']'|'^'..'`'|'{'..'~'|'"'|'\\\''|'\t'|'\\'|'\"');
