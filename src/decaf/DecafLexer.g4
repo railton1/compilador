@@ -16,7 +16,11 @@ TK_class : 'class Program';
 LCURLY : '{';
 RCURLY : '}';
 
+LPAR : '(';
+RPAR : ')';
 
+LCOL : '[';
+RCOL : ']';
 
 RESERVADA : ('boolean'|'break'|'callout'|'class'|'continue'|'else'|'for'|'int'|'return'|'void'|'if');
 
@@ -36,11 +40,15 @@ INTLITERAL : (NUM(NUM)*|'0x'(NUM|HEX)+);
 
 OP : ('+'|'-'|'*'|'<'|'<='|'!='|'&&'|'>'|'>='|'='|'!'|'||'|'=='|'%');
 
-TIPO: int | boolean;
+TIPO: ('int' | 'boolean');
+
+END: ';';
+
+VIR: ',';
 
 fragment
 BOL : ('true'|'false');
-ESC :  '\\' ('n'|'t'|'\\'|'"');
+ESC : '\\' ('n'|'t'|'\\'|'"');
 ALF : ('a'..'z' | 'A'..'Z');
 NUM : ('0'..'9');
 HEX : ('a'..'f'|'A'..'F');
