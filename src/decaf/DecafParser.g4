@@ -12,6 +12,7 @@ options
 
 program: TK_class LCURLY field_decl RCURLY;
 
-field_decl: LCURLY TIPO ID | TIPO ID LCOL INTLITERAL RCOL RCURLY VIR + END;
+field_decl:  test (VIR test)*;
 
+test: TIPO ID | TIPO ID LCOL INTLITERAL RCOL;
 
