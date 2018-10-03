@@ -66,7 +66,13 @@ BOOLEAN: 'boolean';
 
 RESERVAS: ('boolean'|'break'|'callout'|'class'|'continue'|'if'|'else'|'for'|'int'|'float'|'return'|'void');
 
-ARITH_OP: ('+'|'-'|'*'|'/'|'%');
+MAIS: '+';
+
+MULT: '*';
+
+DIV: '/';
+
+PORC: '%';
 
 REL_OP: ('<'|'>'|'<='|'>=');
 

@@ -36,7 +36,9 @@ expr: location | method_call | literal | expr bin_op expr | MENOS expr | EXCLA e
 
 callout_arg: expr | STRING;
 
-bin_op: (ARITH_OP|REL_OP|EQ_OP|COND_OP);
+bin_op: (arith_op|REL_OP|EQ_OP|COND_OP);
+
+arith_op: MAIS|MENOS|PORC|DIV|MULT;
 
 literal: int_literal | CHAR | bool_literal;
 
@@ -47,4 +49,3 @@ int_literal: INTLITERAL;
 bool_literal: TRUE | FALSE;
 
 id: ID;
-
