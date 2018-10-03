@@ -20,13 +20,13 @@ RPAR : ')';
 LCOL : '[';
 RCOL : ']';
 
+CHAR : '\'' (ALF|NUM|ESC|EPC) '\'';
+
 BOOLEANLITERAL : ('true'|'false');
 
 TRUE: 'true';
 
 FALSE: 'false';
-
-CHAR : '\'' (ALF|NUM|ESC|EPC) '\'';
 
 STRING: '"'(ALF|NUM|EPS)*'"';
 
@@ -74,16 +74,16 @@ EQ_OP: ('=='|'!=');
 
 COND_OP: ('&&'|'||');
 
-ID : (ALF|'_')(ALF|NUM|'_')*;
-
-WS_ : ((' ')+|'\n'|'\t') -> skip;
-
-SL_COMMENT : '//' (~'\n')* '\n' -> skip;
-
 fragment ESC : '\\' ('n'|'t'|'\\'|'"');
 fragment ALF : ('a'..'z' | 'A'..'Z');
 fragment NUM : ('0'..'9');
 fragment HEX : ('0'..'9'|'a'..'f'|'A'..'F');
 fragment EPC : (' '..'!'|'#'..'&'|'('..'/'|':'..'@'|'['|']'|'^'..'`'|'{'..'~');
 fragment EPS : (' '..'!'|'#'..'&'|'('..'/'|':'..'@'|'['|']'|'^'..'`'|'{'..'~'|'"'|'\\\''|'\t'|'\\'|'\"');
+
+ID : (ALF|'_')(ALF|NUM|'_')*;
+
+WS_ : ((' ')+|'\n'|'\t') -> skip;
+
+SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
