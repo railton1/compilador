@@ -55,13 +55,6 @@ class Main {
 						case DecafLexer.BOOLEANLITERAL:
 							type = " BOOLEANLITERAL ";
 							break;
-
-						case DecafLexer.RESERVADA:
-							type = " ";
-							break;
-						case DecafLexer.INTLITERAL:
-							type = " INTLITERAL ";
-							break;
 						}
 		        			System.out.println (token.getLine() + type + text);
 		        		}

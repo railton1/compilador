@@ -44,7 +44,7 @@ literal: int_literal | CHAR | bool_literal;
 
 assign_op: ASSIGN_OP | IGUAL;
 
-int_literal: INTLITERAL;
+int_literal: NUMERO|HEXA;
 
 bool_literal: TRUE | FALSE;
 

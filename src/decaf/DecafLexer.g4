@@ -11,6 +11,10 @@ options
 
 TK_class : 'class Program';
 
+CHAR: '\''(ESC|ALF|NUM|' '|'!'|'#'|'$'|'%'|'&'|'('|')'|'*'|'+'|','|'-'|'.'|'/'|':'|';'|'<'|'='|'>'|'?'|'@'|'['|']'|'^'|'_'|'´'|'`'|'{'|'|'|'}'|'~')'\'';
+
+STRING: '"'(ALF|NUM|' '|'!'|'"'|'#'|'$'|'%'|'&'|'\\\''|'('|')'|'*'|'+'|','|'-'|'.'|'/'|':'|';'|'<'|'='|'>'|'?'|'@'|'['|']'|'^'|'_'|'´'|'`'|'{'|'|'|'}'|'~'|'\t'|'\\'|'\"')*'"';
+
 LCURLY : '{';
 RCURLY : '}';
 
@@ -25,12 +29,6 @@ BOOLEANLITERAL : ('true'|'false');
 TRUE: 'true';
 
 FALSE: 'false';
-
-CHAR : '\'' (ALF|NUM|ESC|EPC) '\'';
-
-STRING: '"'(ALF|NUM|EPS)*'"';
-
-INTLITERAL : (NUM(NUM)*|'0x'(HEX|HEX)*);
 
 INT: 'int';
 
@@ -64,8 +62,6 @@ MENOS: '-';
 
 BOOLEAN: 'boolean';
 
-RESERVAS: ('boolean'|'break'|'callout'|'class'|'continue'|'if'|'else'|'for'|'int'|'float'|'return'|'void');
-
 MAIS: '+';
 
 MULT: '*';
@@ -80,16 +76,18 @@ EQ_OP: ('=='|'!=');
 
 COND_OP: ('&&'|'||');
 
+NUMERO: NUM(NUM)*;
+
+HEXA: '0x'(HEX|HEX)*;
+
 ID : (ALF|'_')(ALF|NUM|'_')*;
 
-WS_ : ((' ')+|'\n'|'\t') -> skip;
+WS : [ \t\r\n]+ -> skip;
 
-SL_COMMENT : '//' (~'\n')* '\n' -> skip;
+SL_COMMENT : '//'(~'\n')*'\n' -> skip;
 
-fragment ESC : '\\' ('n'|'t'|'\\'|'"');
+fragment ESC : '\\'('n'|'t'|'\\'|'"');
 fragment ALF : ('a'..'z' | 'A'..'Z');
 fragment NUM : ('0'..'9');
 fragment HEX : ('0'..'9'|'a'..'f'|'A'..'F');
-fragment EPC : (' '..'!'|'#'..'&'|'('..'/'|':'..'@'|'['|']'|'^'..'`'|'{'..'~');
-fragment EPS : (' '..'!'|'#'..'&'|'('..'/'|':'..'@'|'['|']'|'^'..'`'|'{'..'~'|'"'|'\\\''|'\t'|'\\'|'\"');
 
