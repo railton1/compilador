@@ -54,6 +54,8 @@ CONTINUE: 'continue';
 
 CALLOUT: 'callout';
 
+INVALID: 'invalid';
+
 ASSIGN_OP: ('+='|'-=');
 
 EXCLA: '!' ;
@@ -76,9 +78,13 @@ EQ_OP: ('=='|'!=');
 
 COND_OP: ('&&'|'||');
 
-NUMERO: NUM(NUM)*;
+INTEGER_LITERAL: (NUM(NUM)*|'0x'(HEX|HEX)*);
 
-HEXA: '0x'(HEX|HEX)*;
+TIPO: ('int'|'boolean');
+
+//NUMERO: NUM(NUM)*;
+
+//HEXA: '0x'(HEX|HEX)*;
 
 ID : (ALF|'_')(ALF|NUM|'_')*;
 
