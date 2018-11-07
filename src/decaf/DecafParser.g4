@@ -22,7 +22,7 @@ type: INT | BOOLEAN;
 
 block: LCURLY var_decl* statement* RCURLY;
 
-var_decl: sub_method_var (VIR ID)* PV;
+var_decl: type ID (VIR ID)* PV;
 
 statement: location assign_op expr PV | method_call PV | IF (expr) block (ELSE block)* | FOR ID assign_op expr VIR expr block | RETURN (expr)* PV | BREAK PV | CONTINUE PV | block;
 

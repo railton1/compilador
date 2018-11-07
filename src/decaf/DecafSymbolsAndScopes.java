@@ -30,11 +30,18 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
         System.out.println(globals);
     }
 
+	@Override public void enterVar_decl(DecafParser.Var_declContext ctx)
+	{
+	for(int i=0; i < ctx.ID().size(); i++){
+	defineVar(ctx.type(), ctx.ID(i).getSymbol());
+	}
+	}
+
     @Override
     public void enterMethod_decl(DecafParser.Method_declContext ctx) {
         String name = ctx.ID().getText();
-        int typeTokenType = ctx.type().start.getType();
-        DecafSymbol.Type type = this.getType(typeTokenType);
+        //int typeTokenType = ctx.type().start.getType();
+        //DecafSymbol.Type type = this.getType(typeTokenType);
 
         // push new scope by making new one that points to enclosing scope
         FunctionSymbol function = new FunctionSymbol(name);
@@ -50,11 +57,12 @@ public class DecafSymbolsAndScopes extends DecafParserBaseListener {
         popScope();
     }
 
+
     @Override
     public void enterBlock(DecafParser.BlockContext ctx) {
         LocalScope l = new LocalScope(currentScope);
         saveScope(ctx, currentScope);
-        // pushScope(l);
+        pushScope(l);
     }
 
     @Override
